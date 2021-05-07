@@ -1,13 +1,52 @@
 import '../styles/multi-cmd.css'
 import redot from '../media/images/red-dot.svg'
 import greendot from '../media/images/green-dot.svg'
-import {useState} from 'react'
+import {useState, useEffect} from 'react'
+//import { w3cwebsocket as W3CWebSocket } from "websocket";
 
 function Multicmd() {
 
-    const [display, setDispaly] = useState("endpoints");
+        const [display, setDispaly] = useState("endpoints");
+        //const client = new W3CWebSocket('ws://127.0.0.1:5000');
+        useEffect(()=>{
+                /*client.onopen = () => {
+                        client.send("elpepe");
+                        console.log('WebSocket Client Connected');
+                };
+                client.onmessage = (message) => {
+                        console.log(message);
+                };*/
+                connect();
+        }, [])
 
-    return (
+        function connect() {
+        var ws = new WebSocket('wss://localhost:5000');
+        ws.onopen = function() {
+                console.log("ONOPEN");
+        // subscribe to some channels
+                ws.send(JSON.stringify({
+        //.... some message the I must send when I connect ....
+        }));
+        };
+        
+        ws.onmessage = function(e) {
+                console.log('Message:', e.data);
+        };
+        
+        ws.onclose = function(e) {
+                console.log("ONCLOSE");
+                console.log('Socket is closed. Reconnect will be attempted in 1 second.', e.reason);
+                setTimeout(function() {
+                connect();
+                }, 1000);
+        };
+        
+        ws.onerror = function(err) {
+                console.error('Socket encountered error: ', err.message, 'Closing socket');
+                ws.close();
+        };
+        }
+   return (
         <div class="main">
             <div class="banner">
                     <h2>Multi-CMD</h2>
