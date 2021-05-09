@@ -6,37 +6,41 @@ import Column from './Column';
 //import { w3cwebsocket as W3CWebSocket } from "websocket";
 
 function Multicmd() {
+
         const [ column, setColumn ] = useState(false)
         const [display, setDispaly] = useState("endpoints");
-        //const client = new W3CWebSocket('ws://127.0.0.1:5000');
-        useEffect(()=>{
-                /*client.onopen = () => {
-                        client.send("elpepe");
-                        console.log('WebSocket Client Connected');
-                };
-                client.onmessage = (message) => {
-                        console.log(message);
-                };*/
+        // const [endpoints, setEndpoints] = useState([]);
+        var endpointsArr = [];
+
+        useEffect(() => {
                 connect();
         });
 
         function connect() {
-        var ws = new WebSocket('wss://localhost:5000');
+        var ws = new WebSocket('ws://localhost:8081');
         ws.onopen = function() {
-                console.log("ONOPEN");
-                // subscribe to some channels
-                ws.send(JSON.stringify({
-                //.... some message the I must send when I connect ....
-                }));
+                console.log("Connection started");
+                
+
+                // Send test message to backend
+                ws.send("GET botList")
         };
         
         ws.onmessage = function(e) {
-                console.log('Message:', e.data);
+                var dataArgs = e.data.split(': ');
+                if(dataArgs[0] === "botlist"){
+                        JSON.parse(dataArgs[1]).forEach( (elem) => {
+                                endpointsArr.push(elem)
+                        })
+                }
+                
+                console.log(endpointsArr)
+                console.log('Backend says:', e.data);
         };
         
         ws.onclose = function(e) {
-                console.log("ONCLOSE");
-                console.log('Socket is closed. Reconnect will be attempted in 1 second.', e.reason);
+                console.log("Connection closed");
+                console.log('Reconnect will be attempted in 1 second.', e.reason);
                 setTimeout(function() {
                 connect();
                 }, 1000);
@@ -47,83 +51,89 @@ function Multicmd() {
                 ws.close();
                 };
         }
+        
+        console.log(endpointsArr)
    return (
-        <div class="main">
+
+        <div className="main">
                 <button onClick={()=>{setColumn(!column)}}></button>
                 { column && <Column toggleColumn={setColumn}/> }
-                <div class="banner">
+                <div className="banner">
+
                         <h2>Multi-CMD</h2> 
                 </div>
 
-        <div>
-                <div class="banner" id="endpoints" onClick={()=>{setDispaly("endpoints")}}>
+            <div>
+                <div className="banner" id="endpoints" onClick={()=>{setDispaly("endpoints")}}>
                         <h2>Select endpoints</h2>
 
                 </div>
-                <div class="endpointsDiv" id={display ==="endpoints" ? "openEndpointsDiv" : "" }>
-                        <div class="container">
-                                        <cell class="itemSelect">Select</cell>
-                                        <cell class="itemStatus">Status</cell>
-                                        <cell class="itemEndpointID tableSeparator">Endpoint ID</cell>
-                                        <cell class="itemHostname">Hostname</cell>
-                                        <cell class="tableSeparator"><input type="checkbox"></input></cell>
-                                        <cell>
+                <div className="endpointsDiv" id={display ==="endpoints" ? "openEndpointsDiv" : "" }>
+                        <div className="container">
+                                        <div className="itemSelect cell">Select</div>
+                                        <div className="itemStatus cell">Status</div>
+                                        <div className="itemEndpointID tableSeparator cell">Endpoint ID</div>
+                                        <div className="itemHostname cell">Hostname</div>
+
+                                        
+                                        <div className="tableSeparator cell"><input type="checkbox"></input></div>
+                                        <div className="cell">
                                                 <object className="status-dot" src={redot}>reddot</object>
-                                        </cell>
-                                        <cell>e31253-124532</cell>
-                                        <cell class="tableSeparator">Osmar</cell>
+                                        </div>
+                                        <div className="cell">e31253-124532</div>
+                                        <div className="tableSeparator cell">Osmar</div>
                                          
-                                        <cell class="tableSeparator"><input type="checkbox"></input></cell>
-                                        <cell>
+                                        <div className="tableSeparator cell"><input type="checkbox"></input></div>
+                                        <div className="cell">
                                                 <object className="status-dot" src={greendot}>greendot</object>
-                                        </cell>
-                                        <cell>e31253-124535</cell>
-                                        <cell class="tableSeparator">Marti</cell>
+                                        </div>
+                                        <div className="cell">e31253-124535</div>
+                                        <div className="tableSeparator cell">Marti</div>
                                 </div>
                         </div>
-                </div>
+            </div>
 
 
 
-        <div>
-                <div class="banner" id="commands" onClick={()=>{setDispaly("cmd")}}>
+            <div>
+                <div className="banner" id="commands" onClick={()=>{setDispaly("cmd")}}>
                         <h2>Command sender</h2>
                 </div>
-                <div class="cmdDiv" id={display ==="cmd" ? "openCommandsDiv" : "" } >
-                        <input class="mainCmd textboxCmd" type="text" placeholder="Insert Command" text="command"></input>
+                <div className="cmdDiv" id={display ==="cmd" ? "openCommandsDiv" : "" } >
+                        <input className="mainCmd textboxCmd" type="text" placeholder="Insert Command" text="command"></input>
                         <h3>OR</h3>
-                        <div class="scriptUploadBtn">
+                        <div className="scriptUploadBtn">
                                 
                                 <input type="file" id="actual-btn" hidden/>
                                 
                                 <span id="file-chosen">No .sh script loaded</span>
                                 
-                                <label for="actual-btn">Load File</label>
+                                <label htmlFor="actual-btn">Load File</label>
                         </div>
-                        <button class="mainCmd buttonCmd" type="submit" value="Submit" text="btn">Send</button>
+                        <button className="mainCmd buttonCmd" type="submit" value="Submit" text="btn">Send</button>
                 </div>
 
             </div>
             <div>
-                <div class={display !== 'output' ? 'fixed banner' : 'banner' } id="output" onClick={()=>{setDispaly("output")}}>
+                <div className={display !== 'output' ? 'fixed banner' : 'banner' } id="output" onClick={()=>{setDispaly("output")}}>
                         <h2>Output result</h2>
                 </div>
-                <div class="outputDiv" id={display ==="output" ? "openOutputDiv" : "" }> 
-                        <div class="botList">
-                                <div class="botsListed">e31253-124532/Osmar</div>
-                                <div class="botsListed">e31253-124535/Marti</div>
-                                <div class="botsListed">e31253-124534/Other</div>
-                                <div class="botsListed">e31253-124534/Other</div>
-                                <div class="botsListed">e31253-124534/Other</div>
-                                <div class="botsListed">e31253-124534/Other</div>
-                                <div class="botsListed">e31253-124534/Other</div>
-                                <div class="botsListed">e31253-124534/Other</div>
-                                <div class="botsListed">e31253-124534/Other</div>
-                                <div class="botsListed">e31253-124534/Other</div>
-                                <div class="botsListed">e31253-124534/Other</div>
-                                <div class="botsListed">e31253-124534/Other</div>
+                <div className="outputDiv" id={display ==="output" ? "openOutputDiv" : "" }> 
+                        <div className="botList">
+                                <div className="botsListed">e31253-124532/Osmar</div>
+                                <div className="botsListed">e31253-124535/Marti</div>
+                                <div className="botsListed">e31253-124534/Other</div>
+                                <div className="botsListed">e31253-124534/Other</div>
+                                <div className="botsListed">e31253-124534/Other</div>
+                                <div className="botsListed">e31253-124534/Other</div>
+                                <div className="botsListed">e31253-124534/Other</div>
+                                <div className="botsListed">e31253-124534/Other</div>
+                                <div className="botsListed">e31253-124534/Other</div>
+                                <div className="botsListed">e31253-124534/Other</div>
+                                <div className="botsListed">e31253-124534/Other</div>
+                                <div className="botsListed">e31253-124534/Other</div>
                         </div>
-                        <div class="botOutput">
+                        <div className="botOutput">
                                 <p>Command: ifconfig</p>
                                 <p>Output: blablalba</p>
                         </div>
