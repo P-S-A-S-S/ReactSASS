@@ -3,7 +3,7 @@ import logo from '../media/images/sasslogo.png'
 
 function Login() {
     return (
-        <div className="container">
+        <div className="logincontainer">
             <div className="loginpage">
                 <h1 className="title">SASS</h1>
                 <h2 className="subtitle">Login</h2>

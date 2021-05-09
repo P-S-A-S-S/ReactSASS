@@ -36,10 +36,10 @@ a {
     transition: 1s ease;
 }
 
-.fixed { 
+/* .fixed { 
     position: absolute;
     bottom: 0;
-}
+} */
 
 .endpointsDiv {
     display: flex;

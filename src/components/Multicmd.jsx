@@ -2,10 +2,11 @@ import '../styles/multi-cmd.css'
 import redot from '../media/images/red-dot.svg'
 import greendot from '../media/images/green-dot.svg'
 import {useState, useEffect} from 'react'
+import Column from './Column';
 //import { w3cwebsocket as W3CWebSocket } from "websocket";
 
 function Multicmd() {
-
+        const [ column, setColumn ] = useState(false)
         const [display, setDispaly] = useState("endpoints");
         //const client = new W3CWebSocket('ws://127.0.0.1:5000');
         useEffect(()=>{
@@ -48,6 +49,8 @@ function Multicmd() {
         }
    return (
         <div class="main">
+                <button onClick={()=>{setColumn(!column)}}></button>
+                { column && <Column toggleColumn={setColumn}/> }
                 <div class="banner">
                         <h2>Multi-CMD</h2> 
                 </div>

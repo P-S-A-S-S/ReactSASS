@@ -1,10 +1,11 @@
 //import Multicmd from './Multicmd'
-import Login from './Login'
+import Login from './Login';
+import Multicmd from './Multicmd';
 
 function App() {
   return (
     <div>
-      <Login />
+      <Multicmd/>
     </div>
   );
 }
