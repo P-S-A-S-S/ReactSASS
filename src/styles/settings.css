@@ -1,10 +1,10 @@
-.logincontainer{
+.Settingscontainer{
     top: 50%;
     right: 50%;
     display: flex;
     height: 100vh;
     width: 100%;
-    background-color: rgb(28, 28, 28);
+    background-color: rgb(0, 0, 0);
 }
 
 .title{
@@ -21,7 +21,7 @@
     margin: 30px;
 }
 
-.loginpage{
+.Settingspage{
     display: flex;
     flex-direction: column;
     height: 78vh;
@@ -29,7 +29,7 @@
     padding: 80px;
 }
 
-.login {
+.Settings {
     display: flex;
     flex-direction: column;
     align-items: center;
