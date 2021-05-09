@@ -23,10 +23,10 @@ function Multicmd() {
         var ws = new WebSocket('wss://localhost:5000');
         ws.onopen = function() {
                 console.log("ONOPEN");
-        // subscribe to some channels
+                // subscribe to some channels
                 ws.send(JSON.stringify({
-        //.... some message the I must send when I connect ....
-        }));
+                //.... some message the I must send when I connect ....
+                }));
         };
         
         ws.onmessage = function(e) {
@@ -44,7 +44,7 @@ function Multicmd() {
         ws.onerror = function(err) {
                 console.error('Socket encountered error: ', err.message, 'Closing socket');
                 ws.close();
-        };
+                };
         }
    return (
         <div class="main">
