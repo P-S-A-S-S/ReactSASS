@@ -1,0 +1,71 @@
+.container{
+    top: 50%;
+    right: 50%;
+    display: flex;
+    height: 100vh;
+    width: 100%;
+    background-color: rgb(28, 28, 28);
+}
+
+.title{
+    text-align: center;
+    color: gray;
+    font-size: 90px;
+    margin: 10px;
+}
+
+.subtitle{
+    text-align: center;
+    color: #ffffff;
+    font-size: 50px;
+    margin: 30px;
+}
+
+.loginpage{
+    display: flex;
+    flex-direction: column;
+    height: 78vh;
+    width: 100%;
+    padding: 80px;
+}
+
+.login {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 280px;
+}
+
+input {
+    width: 60%;
+    height: 40px;
+    margin: 20px;
+    padding: 15px 30px 15px 30px;
+    font-size: 24px;
+    border-radius: 1vh;
+    border: 0px transparent;
+}
+
+.sendform {
+    margin-top: 40px;
+    background-color: indigo; /* Green */
+    border: none;
+    border-radius: 0.3rem;
+    color: white;
+    font-weight: bold;
+    font-size: 24px;
+    padding: 1rem 2.5em;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    cursor: pointer;
+}
+
+.sasslogo {
+    align-self: center;
+    text-align: center;
+    color: #ffffff;
+    height: 210px;
+    width: 210px;
+    margin-top: 70px;
+}
