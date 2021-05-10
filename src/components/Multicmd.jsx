@@ -3,56 +3,19 @@ import redot from '../media/images/red-dot.svg'
 import greendot from '../media/images/green-dot.svg'
 import {useState, useEffect} from 'react'
 import Column from './Column';
+import {connect} from '../helpers/connect';
 //import { w3cwebsocket as W3CWebSocket } from "websocket";
 
 function Multicmd() {
 
         const [ column, setColumn ] = useState(false)
         const [display, setDispaly] = useState("endpoints");
-        // const [endpoints, setEndpoints] = useState([]);
-        var endpointsArr = [];
+        const [endpoints, setEndpoints] = useState([]);
 
         useEffect(() => {
-                connect();
-        });
-
-        function connect() {
-        var ws = new WebSocket('ws://localhost:8081');
-        ws.onopen = function() {
-                console.log("Connection started");
-                
-
-                // Send test message to backend
-                ws.send("GET botList")
-        };
+                connect(endpoints, setEndpoints);
+        }, []);
         
-        ws.onmessage = function(e) {
-                var dataArgs = e.data.split(': ');
-                if(dataArgs[0] === "botlist"){
-                        JSON.parse(dataArgs[1]).forEach( (elem) => {
-                                endpointsArr.push(elem)
-                        })
-                }
-                
-                console.log(endpointsArr)
-                console.log('Backend says:', e.data);
-        };
-        
-        ws.onclose = function(e) {
-                console.log("Connection closed");
-                console.log('Reconnect will be attempted in 1 second.', e.reason);
-                setTimeout(function() {
-                connect();
-                }, 1000);
-        };
-        
-        ws.onerror = function(err) {
-                console.error('Socket encountered error: ', err.message, 'Closing socket');
-                ws.close();
-                };
-        }
-        
-        console.log(endpointsArr)
    return (
 
         <div className="main">
@@ -70,28 +33,27 @@ function Multicmd() {
                 </div>
                 <div className="endpointsDiv" id={display ==="endpoints" ? "openEndpointsDiv" : "" }>
                         <div className="container">
-                                        <div className="itemSelect cell">Select</div>
-                                        <div className="itemStatus cell">Status</div>
-                                        <div className="itemEndpointID tableSeparator cell">Endpoint ID</div>
-                                        <div className="itemHostname cell">Hostname</div>
-
-                                        
-                                        <div className="tableSeparator cell"><input type="checkbox"></input></div>
-                                        <div className="cell">
-                                                <object className="status-dot" src={redot}>reddot</object>
-                                        </div>
-                                        <div className="cell">e31253-124532</div>
-                                        <div className="tableSeparator cell">Osmar</div>
-                                         
-                                        <div className="tableSeparator cell"><input type="checkbox"></input></div>
-                                        <div className="cell">
-                                                <object className="status-dot" src={greendot}>greendot</object>
-                                        </div>
-                                        <div className="cell">e31253-124535</div>
-                                        <div className="tableSeparator cell">Marti</div>
+                                <div className="itemSelect cell">Select</div>
+                                <div className="itemStatus cell">Status</div>
+                                <div className="itemEndpointID tableSeparator cell">Endpoint ID</div>
+                                <div className="itemHostname cell">Hostname</div>
                                 </div>
                         </div>
-            </div>
+                        { 
+                                        endpoints.map( (endp) => {
+                                                return(
+                                                <div className={display ==="endpoints" ? "openEndpRow" : "endpRow"}>
+                                                        <div className="tableSeparator cell"><input type="checkbox"></input></div>
+                                                        <div className="cell">
+                                                                <object className="status-dot" src={redot}>elpepe</object>
+                                                        </div>
+                                                        <div className="cell">{endp._id}</div>
+                                                        <div className="tableSeparator cell">Osmar</div>
+                                                </div> 
+                                                )             
+                                        })
+                                }
+                </div>
 
 
 
@@ -99,7 +61,7 @@ function Multicmd() {
                 <div className="banner" id="commands" onClick={()=>{setDispaly("cmd")}}>
                         <h2>Command sender</h2>
                 </div>
-                <div className="cmdDiv" id={display ==="cmd" ? "openCommandsDiv" : "" } >
+                <form className="cmdDiv" id={display ==="cmd" ? "openCommandsDiv" : "" } method="POST" action="/sendcommands">
                         <input className="mainCmd textboxCmd" type="text" placeholder="Insert Command" text="command"></input>
                         <h3>OR</h3>
                         <div className="scriptUploadBtn">
@@ -111,7 +73,7 @@ function Multicmd() {
                                 <label htmlFor="actual-btn">Load File</label>
                         </div>
                         <button className="mainCmd buttonCmd" type="submit" value="Submit" text="btn">Send</button>
-                </div>
+                </form>
 
             </div>
             <div>
