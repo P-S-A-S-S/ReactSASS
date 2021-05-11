@@ -8,8 +8,11 @@ import {
   Route,
   Link
 } from "react-router-dom";
+import Column from './Column';
+import { useState } from 'react';
 
 function App() {
+  const [ column, setColumn ] = useState(false)
   return (
     <Router>
       <Switch>

@@ -15,6 +15,3 @@ html body {
                                   supported by Chrome, Edge, Opera and Firefox */
   min-height: 100vh;
 }
-#root, #root > div{
-  min-height: 100vh;
-}

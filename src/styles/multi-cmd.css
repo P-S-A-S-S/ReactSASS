@@ -47,7 +47,7 @@ a {
     background-color: #e3e3e3;
     transition: 0.7s ease;
     height: 0vh;
-    overflow-y: hidden;
+    overflow-y: auto;
     overflow-x: hidden;
 }
 
@@ -186,7 +186,6 @@ label {
     overflow-x: auto;
     overflow-y: hidden;
 }
-
 ::-webkit-scrollbar {
     width: 8px;
 }
@@ -208,8 +207,12 @@ label {
     height: 100%;
     line-height: 92px;
     text-align: center;
+    border: 1px solid black;
 }
-
+.botsListed:hover {
+    cursor: pointer;
+    background: grey;
+}
 .botsListed:target {
     border-right: 2px solid black;
     border-left: 2px solid black
@@ -233,4 +236,21 @@ label {
     background: #e3e3e3;
     height: auto;
     transition: 1s ease;
+}
+.redDot{
+    width: 25px;
+    height: 25px;
+    border-radius: 2em;
+    background: red;
+    border: 1px solid rgb(65, 0, 0);
+}
+.greenDot{
+    width: 25px;
+    height: 25px;
+    border-radius: 2em;
+    background: green;
+    border: 1px solid rgb(5, 39, 0);
+}
+.outPuts{
+    max-height: 20vh;
 }
