@@ -1,5 +1,3 @@
-import {bin2String} from './bin2String';
-
 const DEBUG = false;
 
 function connect(endpoints, setEndpoints, outArr, setOutArr) {

@@ -6,7 +6,8 @@ import {useState, useEffect} from 'react'
 import {connect} from '../helpers/connect';
 import {sendCommands} from '../helpers/sendCommands';
 import Header from './Header';
-
+import 'react-notifications/lib/notifications.css';
+import {NotificationContainer, NotificationManager} from 'react-notifications';
 //import { w3cwebsocket as W3CWebSocket } from "websocket";
 
 function Multicmd() {
@@ -46,6 +47,7 @@ function Multicmd() {
                 </div>
 
                 <div>
+                        <NotificationContainer/>
                         <div className="banner" id="endpoints" onClick={()=>{setDispaly("endpoints")}}>
                                 <h2>Select endpoints</h2>
                         </div>
@@ -92,7 +94,7 @@ function Multicmd() {
                                         <span id="file-chosen">No .sh script loaded</span>
                                         <label className="loadBtn" htmlFor="actual-btn">Load File</label>
                                 </div>
-                                <button className="mainCmd buttonCmd" onClick={(e)=>{e.preventDefault();sendCommands(command, checks); setDispaly('output')}} type="submit" value="Submit" text="btn">Send</button>
+                                <button className="mainCmd buttonCmd" onClick={ async (e)=>{e.preventDefault(); await sendCommands(command, checks); NotificationManager.success("Comando enviado")}} type="submit" value="Submit" text="btn">Send</button>
                         </form>
                 </div>
 
@@ -109,6 +111,7 @@ function Multicmd() {
                                         }
                                         
                                 </div>
+                                
                                 <div className="outPuts">
                                 {
                                         sKey !== ""
