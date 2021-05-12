@@ -3,6 +3,7 @@ import logo from '../media/images/sasslogo.png';
 import { useHistory } from 'react-router-dom';
 import Column from './Column';
 import { useState } from 'react';
+import logout from '../media/images/logout.png'
 
 
 function Header() {
@@ -20,7 +21,7 @@ function Header() {
                 <h2 class="sassText">SASS</h2>
             </div>
             <div class="exitBtn">
-                <img src="../images/logut.png" alt="Image" width="40px" height="40px"></img>
+                <img src={logout} alt="Image"></img>
             </div>
             { column && <Column toggleColumn={setColumn}/> }
         </div>

@@ -1,3 +1,5 @@
+import {bin2String} from './bin2String';
+
 const DEBUG = false;
 
 function connect(endpoints, setEndpoints, outArr, setOutArr) {
@@ -9,31 +11,35 @@ function connect(endpoints, setEndpoints, outArr, setOutArr) {
             ws.send("GET botList")
     };
 
-    ws.onmessage = function(e) {
-            var dataArgs = e.data.split(': ');
+    ws.onmessage = async function(e) {
+            await e.data.text().then( async text =>{
+                var dataArgs = text.split(': ');
             if(dataArgs[0] === "botlist"){
                     /* JSON.parse(dataArgs[1]).forEach( (elem) => {
                             //endpointsArr.push(elem)
                             setEndpoints([...endpoints,elem] );
                     }) */
-                    setEndpoints(JSON.parse(dataArgs[1]));
+                    await setEndpoints( await JSON.parse(dataArgs[1]));
             }
             try{
-                    if(JSON.parse(dataArgs[0]).hasOwnProperty("endp")){
-                        const { endp, command, output } = JSON.parse(dataArgs[0]);
+                    if(JSON.parse(text).hasOwnProperty("endp")){
+                        const { endp, command, output } = await JSON.parse(text);
                         if(!outArr.hasOwnProperty(endp)){
-                                setOutArr({...outArr, [endp] : [ {command : command, output : output } ]})
+                                await setOutArr({...outArr, [endp] : [ {command : command, output : output } ]})
+                                console.log("1st Output: ", output)
                         } else {
                                 const newArray = outArr[endp];
-                                newArray.push({ command : command, output : output });
+                                await newArray.push({ command : command, output : output });
+                                console.log("more outputs: ", output)
                                 if(DEBUG) console.log(newArray);
-                                setOutArr({...outArr, [endp] : newArray});
+                                await setOutArr({...outArr, [endp] : newArray});
                         }
                     }
             } catch {
-                if(DEBUG) console.log("Error parsing json: ", dataArgs[0])
+                if(DEBUG) console.log("Error parsing json: ", text)
             }
-            if(DEBUG) console.log('Backend says:', e.data);
+            if(DEBUG) console.log('Backend says:', text);
+            })
     };
     
     ws.onclose = function(e) {

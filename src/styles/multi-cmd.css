@@ -268,6 +268,7 @@ input[type=checkbox] {
     display: flex;
     padding: 20px;
     flex-direction: column;
+    white-space: pre-wrap;
 }
 
 .endpRow{

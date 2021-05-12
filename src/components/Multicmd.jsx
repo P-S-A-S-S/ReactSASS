@@ -92,7 +92,7 @@ function Multicmd() {
                                         <span id="file-chosen">No .sh script loaded</span>
                                         <label className="loadBtn" htmlFor="actual-btn">Load File</label>
                                 </div>
-                                <button className="mainCmd buttonCmd" onClick={(e)=>{e.preventDefault();sendCommands(command, checks)}} type="submit" value="Submit" text="btn">Send</button>
+                                <button className="mainCmd buttonCmd" onClick={(e)=>{e.preventDefault();sendCommands(command, checks); setDispaly('output')}} type="submit" value="Submit" text="btn">Send</button>
                         </form>
                 </div>
 
@@ -117,7 +117,7 @@ function Multicmd() {
                                                 return(
                                                 <div className="botOutput">
                                                         <p>Command: {data.command}</p>
-                                                        <p>Output: {data.output}</p>
+                                                        <p>Output: <br/>{data.output}</p>
                                                 </div>
                                                 )
                                         })
