@@ -1,6 +1,7 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import '../styles/multi-cmd.css'
-import redot from '../media/images/red-dot.svg'
-import greendot from '../media/images/green-dot.svg'
+// import redot from '../media/images/red-dot.svg'
+// import greendot from '../media/images/green-dot.svg'
 import {useState, useEffect} from 'react'
 import {connect} from '../helpers/connect';
 import {sendCommands} from '../helpers/sendCommands';
@@ -41,90 +42,90 @@ function Multicmd() {
         <div className="main">
                 <Header/>
                 <div className="banner">
-
                         <h2>Multi-CMD</h2> 
                 </div>
 
-            <div>
-                <div className="banner" id="endpoints" onClick={()=>{setDispaly("endpoints")}}>
-                        <h2>Select endpoints</h2>
-
-                </div>
-                <div className="endpointsDiv" id={display ==="endpoints" ? "openEndpointsDiv" : "" }>
-                        <div className="container">
-                                <div className="itemSelect cell">Select</div>
-                                <div className="itemStatus cell">Status</div>
-                                <div className="itemEndpointID tableSeparator cell">Endpoint ID</div>
-                                <div className="itemHostname cell">Ip</div>
-                                </div>
+                <div>
+                        <div className="banner" id="endpoints" onClick={()=>{setDispaly("endpoints")}}>
+                                <h2>Select endpoints</h2>
                         </div>
-                        { 
-                                        endpoints.map( (endp) => {
-                                                return(
-                                                <div className={display ==="endpoints" ? "openEndpRow" : "endpRow"}>
-                                                        <div className="tableSeparator cell"><input onChange={e=>{appendChecked(e); console.log(checks)}} type="checkbox" value={endp._id}></input></div>
-                                                        <div className="cell">
-                                                                <div className={ endp.status.alive ? "greenDot" : "redDot"}></div>
-                                                        </div>
-                                                        <div className="cell">{endp._id}</div>
-                                                        <div className="tableSeparator cell">{endp.ip}</div>
-                                                </div> 
+                        <div className="endpointsDiv" id={display ==="endpoints" ? "openEndpointsDiv" : "" }>
+                                <div className="container">
+                                        <div className="itemSelect cell">Select</div>
+                                        <div className="itemStatus cell">Status</div>
+                                        <div className="itemEndpointID cell">Endpoint ID</div>
+                                        <div className="itemHostname cell">Hostname</div>
+                                
+                        
+                                { 
+                                        endpoints.map((endp) => {
+                                                return(                                                       
+                                                        <>
+                                                                <label className="checkboxPadding cell">
+                                                                        <input onChange={e=>{appendChecked(e); console.log(checks)}} type="checkbox" value={endp._id} />
+                                                                        <span className="customCheckbox"></span>
+                                                                </label>
+                                                                <div className="cell">
+                                                                        <div className={ endp.status.alive ? "greenDot" : "redDot"}></div>
+                                                                </div>
+                                                                <div className="cell">{endp._id}</div>
+                                                                <div className="fieldPadding cell">{endp.ip}</div> 
+                                                        </>
                                                 )             
                                         })
                                 }
-                </div>
-
-
-
-            <div>
-                <div className="banner" id="commands" onClick={()=>{setDispaly("cmd")}}>
-                        <h2>Command sender</h2>
-                </div>
-                <form className="cmdDiv" id={display ==="cmd" ? "openCommandsDiv" : "" }>
-                        <input className="mainCmd textboxCmd" type="text" placeholder="Insert Command" text="command" onChange={(e)=>{setCommand(e.target.value)}}></input>
-                        <h3>OR</h3>
-                        <div className="scriptUploadBtn">
-                                
-                                <input type="file" id="actual-btn" hidden/>
-                                
-                                <span id="file-chosen">No .sh script loaded</span>
-                                
-                                <label htmlFor="actual-btn">Load File</label>
+                                </div>
                         </div>
-                        <button className="mainCmd buttonCmd" onClick={(e)=>{e.preventDefault();sendCommands(command, checks)}} type="submit" value="Submit" text="btn">Send</button>
-                </form>
 
-            </div>
-            <div>
-                <div className={display !== 'output' ? 'fixed banner' : 'banner' } id="output" onClick={()=>{setDispaly("output")}}>
-                        <h2>Output result</h2>
                 </div>
-                <div className="outputDiv" id={display ==="output" ? "openOutputDiv" : "" }> 
-                        <div className="botList">
+
+                <div>
+                        <div className="banner" id="commands" onClick={()=>{setDispaly("cmd")}}>
+                                <h2>Command sender</h2>
+                        </div>
+                        <form className="cmdDiv" id={display ==="cmd" ? "openCommandsDiv" : "" }>
+                                <input className="mainCmd textboxCmd" type="text" placeholder="Insert Command" text="command" onChange={(e)=>{setCommand(e.target.value)}} />
+                                <h3>OR</h3>
+                                <div className="scriptUploadBtn">
+                                        
+                                        <input type="file" id="actual-btn" hidden/>
+                                        <span id="file-chosen">No .sh script loaded</span>
+                                        <label className="loadBtn" htmlFor="actual-btn">Load File</label>
+                                </div>
+                                <button className="mainCmd buttonCmd" onClick={(e)=>{e.preventDefault();sendCommands(command, checks)}} type="submit" value="Submit" text="btn">Send</button>
+                        </form>
+                </div>
+
+                <div>
+                        <div className={display !== 'output' ? 'fixed banner' : 'banner' } id="output" onClick={()=>{setDispaly("output")}}>
+                                <h2>Output result</h2>
+                        </div>
+                        <div className="outputDiv" id={display ==="output" ? "openOutputDiv" : "" }> 
+                                <div className="botList">
+                                        {
+                                                Object.keys(outArr).map((key)=>{
+                                                        return <div onClick={()=>{setSKey(key)}} className="botsListed">{key}</div>
+                                                }) 
+                                        }
+                                        
+                                </div>
+                                <div className="outPuts">
                                 {
-                                        Object.keys(outArr).map((key)=>{
-                                                return <div onClick={()=>{setSKey(key)}} className="botsListed">{key}</div>
-                                        }) 
+                                        sKey !== ""
+                                        &&
+                                        outArr[sKey].map(data=>{
+                                                return(
+                                                <div className="botOutput">
+                                                        <p>Command: {data.command}</p>
+                                                        <p>Output: {data.output}</p>
+                                                </div>
+                                                )
+                                        })
+                                        
                                 }
-                                
-                        </div>
-                        <div className="outPuts">
-                        {
-                                sKey !== ""
-                                &&
-                                outArr[sKey].map(data=>{
-                                        return(
-                                        <div className="botOutput">
-                                                <p>Command: {data.command}</p>
-                                                <p>Output: {data.output}</p>
-                                        </div>
-                                        )
-                                })
-                                
-                        }
+                                </div>
                         </div>
                 </div>
-            </div>
         </div>
     );
   }
