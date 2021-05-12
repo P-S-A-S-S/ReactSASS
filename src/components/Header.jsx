@@ -20,7 +20,7 @@ function Header() {
                 <img src={logo} alt="SASS"></img>
             </div>
             <div class="exitBtn" onClick={()=>{history.push('/')}}>
-                <img src={logout} alt="Image"></img>
+                <img src={logout} alt="logout" />
             </div>
             { column && <Column toggleColumn={setColumn}/> }
         </div>
