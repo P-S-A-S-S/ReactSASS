@@ -10,8 +10,8 @@ function Settings() {
                 <h1 className="title">SASS</h1>
                 <h2 className="subtitle">Settings</h2>
                 <form className="Settings">
-                    <input type="text" name="username" placeholder="New username"/>
-                    <input type="password" name="password" placeholder="New password"/>
+                    <input className="inputField" type="text" name="username" placeholder="New username"/>
+                    <input className="inputField" type="password" name="password" placeholder="New password"/>
                     <button className="sendform" type="button" name="submit" value="Send" onClick={()=>{history.push("/")}}>Send</button>
                 </form>
                 <img className="sasslogo" src={logo} alt="sasslogo"/>
