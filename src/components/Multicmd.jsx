@@ -65,11 +65,11 @@ function Multicmd() {
                                                                         <input onChange={e=>{appendChecked(e); console.log(checks)}} type="checkbox" value={endp._id} />
                                                                         <span className="customCheckbox"></span>
                                                                 </label>
-                                                                <div className="cell">
+                                                                <div className="cell dotPadding">
                                                                         <div className={ endp.status.alive ? "greenDot" : "redDot"}></div>
                                                                 </div>
                                                                 <div className="cell">{endp._id}</div>
-                                                                <div className="fieldPadding cell">{endp.ip}</div> 
+                                                                <div className="cell">{endp.ip}</div> 
                                                         </>
                                                 )             
                                         })
