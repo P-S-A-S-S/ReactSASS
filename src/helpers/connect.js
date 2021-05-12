@@ -1,13 +1,14 @@
+const DEBUG = false;
+
 function connect(endpoints, setEndpoints, outArr, setOutArr) {
     var ws = new WebSocket('ws://localhost:8081');
     ws.onopen = function() {
-            console.log("Connection started");
+            if(DEBUG) console.log("Connection started");
             
-
-            // Send test message to backend
+            // Send specific message to backend for endpoint loading
             ws.send("GET botList")
     };
-    
+
     ws.onmessage = function(e) {
             var dataArgs = e.data.split(': ');
             if(dataArgs[0] === "botlist"){
@@ -32,20 +33,22 @@ function connect(endpoints, setEndpoints, outArr, setOutArr) {
             } catch {
                     console.log("Error parsing json: ", dataArgs[0])
             }
-            console.log('Backend says:', e.data);
+            if(DEBUG) console.log('Backend says:', e.data);
     };
     
     ws.onclose = function(e) {
+        if(DEBUG){
             console.log("Connection closed");
             console.log('Reconnect will be attempted in 1 second.', e.reason);
-            setTimeout(function() {
-            connect();
-            }, 1000);
+        }
+        setTimeout(function() {
+        connect();
+        }, 1000);
     };
     
     ws.onerror = function(err) {
-            console.error('Socket encountered error: ', err.message, 'Closing socket');
-            ws.close();
-            };
+        if(DEBUG) console.error('Socket encountered error: ', err.message, 'Closing socket');
+        ws.close();
+        };
     }
 export{connect};
