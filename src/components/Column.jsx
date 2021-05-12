@@ -22,7 +22,7 @@ function Column(props) {
                     </div>
                     <p>Multi-CMD</p>
                 </div>
-                <div className="colhistory">
+                <div className="colhistory" onClick={()=>{history.push("/history")}}>
                     <div className="historylogo">
                         <img src={historylogo} alt="logo"/>
                     </div>

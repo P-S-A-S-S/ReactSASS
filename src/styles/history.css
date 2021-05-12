@@ -1,0 +1,96 @@
+.main {
+    overflow-x: hidden;
+    overflow-y: hidden;
+    width: 100%;
+    height: 100vh;
+}
+
+h2 {
+    color: white;
+}
+
+a {
+    text-decoration: none;    
+}
+
+.banner {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #000000;
+    width: 100%;
+    height: 10vh;
+    transition: 1s ease;
+}
+
+/* .fixed { 
+    position: absolute;
+    bottom: 0;
+} */
+
+.HistoryDiv {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    background-color: #e3e3e3;
+    transition: 1s ease;
+    height: 0vh;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+#openHistoryDiv {
+    max-height: 90vh  !important;
+    min-height: 90vh !important;
+}
+.containerHistory {
+    display: grid;
+    grid-template-columns: 4;
+    grid-template-rows: 4;
+    margin: 10px 0px 10px 40px;
+    width: 100%;
+}
+.containerHistory > div {
+    font-size: 20px;
+}
+
+.itemSelectHistory {
+    grid-column-start: 1;
+    grid-column-end: 1;
+    grid-row-start: 1;
+    grid-row-end: 1;
+    padding-left: 6px;
+}
+
+.itemStatusHistory {
+    grid-column-start: 2;
+    grid-column-end: 2;
+    grid-row-start: 1;
+    grid-row-end: 1;
+}
+
+.itemEndpointIDHistory{
+    grid-column-start: 3;
+    grid-column-end: 3;
+    grid-row-start: 1;
+    grid-row-end: 1;
+    padding-left: 50px;
+}
+
+.itemHostnameHistory {
+    grid-column-start: 4;
+    grid-column-end: 4;
+    grid-row-start: 1;
+    grid-row-end: 1;
+}
+
+.cellHistory {
+    display: block;
+    box-sizing: content-box;
+    float: none;
+    line-height: normal;
+    position: static;
+    z-index: auto;
+    margin-top: 1vh;
+    margin-bottom: 1vh;
+}

@@ -18,9 +18,8 @@ function Header() {
             </div>
             <div class="sassLogo">
                 <img src={logo} alt="SASS"></img>
-                <h2 class="sassText">SASS</h2>
             </div>
-            <div class="exitBtn">
+            <div class="exitBtn" onClick={()=>{history.push('/')}}>
                 <img src={logout} alt="Image"></img>
             </div>
             { column && <Column toggleColumn={setColumn}/> }

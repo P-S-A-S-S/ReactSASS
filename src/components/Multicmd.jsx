@@ -1,5 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import '../styles/multi-cmd.css'
+import '../styles/multi-cmd.css';
 // import redot from '../media/images/red-dot.svg'
 // import greendot from '../media/images/green-dot.svg'
 import {useState, useEffect} from 'react'

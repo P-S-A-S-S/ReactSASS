@@ -116,7 +116,7 @@ a {
     box-sizing: content-box;
     float: none;
     line-height: normal;
-    position: static;
+    position: relative;
     z-index: auto;
     margin-top: 1vh;
     margin-bottom: 1vh;

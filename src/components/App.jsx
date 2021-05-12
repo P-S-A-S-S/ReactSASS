@@ -8,8 +8,8 @@ import {
   Route,
   Link
 } from "react-router-dom";
-import Column from './Column';
 import { useState } from 'react';
+import History from './History';
 
 function App() {
   const [ column, setColumn ] = useState(false)
@@ -26,6 +26,9 @@ function App() {
         </Route>
         <Route path="/settings">
           <Settings/>
+        </Route>
+        <Route path="/history">
+          <History/>
         </Route>
       </Switch>
     </Router>
