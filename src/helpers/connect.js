@@ -26,12 +26,12 @@ function connect(endpoints, setEndpoints, outArr, setOutArr) {
                         } else {
                                 const newArray = outArr[endp];
                                 newArray.push({ command : command, output : output });
-                                console.log(newArray);
+                                if(DEBUG) console.log(newArray);
                                 setOutArr({...outArr, [endp] : newArray});
                         }
                     }
             } catch {
-                    console.log("Error parsing json: ", dataArgs[0])
+                if(DEBUG) console.log("Error parsing json: ", dataArgs[0])
             }
             if(DEBUG) console.log('Backend says:', e.data);
     };
