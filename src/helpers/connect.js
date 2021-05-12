@@ -25,14 +25,20 @@ function connect(endpoints, setEndpoints, outArr, setOutArr) {
                     if(JSON.parse(text).hasOwnProperty("endp")){
                         const { endp, command, output } = await JSON.parse(text);
                         if(!outArr.hasOwnProperty(endp)){
-                                await setOutArr({...outArr, [endp] : [ {command : command, output : output } ]})
+                                let oldValue = outArr;
+                                oldValue[endp] = [ { command : command, output : output} ];
+                                console.log(oldValue)
+                                //await setOutArr({...outArr, [endp] : [ {command : command, output : output } ]})
+                                await setOutArr(oldValue);
                                 console.log("1st Output: ", output)
                         } else {
-                                const newArray = outArr[endp];
-                                await newArray.push({ command : command, output : output });
+                                //const newArray = outArr[endp];
+                                let oldObj = outArr;
+                                await oldObj[endp].push({ command : command, output : output });
+                                //await newArray.push({ command : command, output : output });
                                 console.log("more outputs: ", output)
-                                if(DEBUG) console.log(newArray);
-                                await setOutArr({...outArr, [endp] : newArray});
+                                if(DEBUG) console.log(oldObj);
+                                await setOutArr(oldObj);
                         }
                     }
             } catch {
