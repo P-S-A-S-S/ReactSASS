@@ -62,15 +62,15 @@ a {
 }
 
 #openEndpointsDiv {
-    height: 60vh !important;
+    height: 50vh !important;
 }
 
 #openCommandsDiv{
-    height: 60vh !important;
+    height: 50vh !important;
 }
 
 #openOutputDiv{
-    height: 60vh !important;
+    height: 50vh !important;
 }
 
 .container {
@@ -122,8 +122,8 @@ a {
     margin-bottom: 1vh;
 }
 
-.fieldPadding {
-    padding-left: 15px;
+.dotPadding {
+    padding-left: 9px;
 }
 
 .checkboxPadding{
@@ -138,11 +138,11 @@ input[type=checkbox] {
 .customCheckbox {
     position: absolute;
     top: -5px;
-    left: 14px;
+    left: 12px;
     height: 18px;
     width: 18px;
     margin: 3px;
-    border: 1px solid black;
+    border: 2px solid black;
     cursor: pointer;
 }
 
@@ -284,15 +284,15 @@ input[type=checkbox] {
     transition: 1s ease;
 }
 .redDot{
-    width: 25px;
-    height: 25px;
+    width: 20px;
+    height: 20px;
     border-radius: 2em;
     background: red;
     border: 1px solid rgb(65, 0, 0);
 }
 .greenDot{
-    width: 25px;
-    height: 25px;
+    width: 20px;
+    height: 20px;
     border-radius: 2em;
     background: green;
     border: 1px solid rgb(5, 39, 0);
