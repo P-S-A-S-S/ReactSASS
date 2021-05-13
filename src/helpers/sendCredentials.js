@@ -1,5 +1,4 @@
 const sendCredentials =  (user, passwd) => {
-
     const jsonData = { username: user, password: passwd }
     fetch('https://localhost:5000/signin', {
         method: 'POST', // *GET, POST, PUT, DELETE, etc.
