@@ -7,7 +7,7 @@ function Login() {
     return (
         <div className="logincontainer">
             <div className="loginpage">
-                <h1 className="title">SASS</h1>
+                <h1 className="Ltitle">SASS</h1>
                 <h2 className="subtitle">Login</h2>
                 <form className="login">
                     <input className="inputField" type="text" name="username" placeholder="Username" />

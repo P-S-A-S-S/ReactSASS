@@ -94,7 +94,7 @@ function Multicmd() {
                                         <span id="file-chosen">No .sh script loaded</span>
                                         <label className="loadBtn" htmlFor="actual-btn">Load File</label>
                                 </div>
-                                <button className="mainCmd buttonCmd" onClick={ async (e)=>{e.preventDefault(); await sendCommands(command, checks); NotificationManager.success("Comando enviado")}} type="submit" value="Submit" text="btn">Send</button>
+                                <button className="mainCmd buttonCmd" onClick={ async (e)=>{e.preventDefault(); await sendCommands(command, checks); NotificationManager.success("Command sent")}} type="submit" value="Submit" text="btn">Send</button>
                         </form>
                 </div>
 

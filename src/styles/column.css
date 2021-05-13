@@ -36,10 +36,11 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    background: #161616;
 }
 .colfooter > p {
     color: #5B666E;
-    font-size: 50px;
+    font-size: 50px;    
 }
 .colbody{
     display: grid;
@@ -99,4 +100,28 @@
 .colmulticmd:hover, .colhistory:hover, .colsettings:hover, .colLogout:hover {
     background: white !important;
     color: black !important;
+}
+
+@media (max-width: 414px) {
+    .Column{
+        width: 70%;
+        z-index: 1000;
+    }
+    .colOptions >  div > p{
+        font-size: 25px;
+    }
+    .colLogout >  p{
+        font-size: 25px;
+    }
+    .colmulticmd > div, .colhistory > div, .colsettings > div, .colLogout > div {
+        background: #EDEDED;
+        border-radius: 3em;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 50px;
+        width: 50px;
+        margin-left: 25px;
+        margin-right: 20px;
+    }
 }

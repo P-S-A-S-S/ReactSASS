@@ -1,7 +1,7 @@
 const DEBUG = false;
 
 function connect(endpoints, setEndpoints, outArr, setOutArr) {
-    var ws = new WebSocket('ws://localhost:8081');
+    var ws = new WebSocket('wss://localhost:5000');
     ws.onopen = function() {
             if(DEBUG) console.log("Connection started");
             
