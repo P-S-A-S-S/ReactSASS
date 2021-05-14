@@ -10,16 +10,16 @@ function Header() {
     const history = useHistory();
     const [ column, setColumn ] = useState(false);
     return (
-        <div class="header">
-            <div class="sandwich" onClick={()=>{setColumn(!column)}}>
+        <div className="header">
+            <div className="sandwich" onClick={()=>{setColumn(!column)}}>
                 <div className="lineSandv"></div>
                 <div className="lineSandv"></div>
                 <div className="lineSandv"></div>
             </div>
-            <div class="sassLogo">
+            <div className="sassLogo">
                 <img src={logo} alt="SASS"></img>
             </div>
-            <div class="exitBtn" onClick={()=>{history.push('/')}}>
+            <div className="exitBtn" onClick={()=>{history.push('/')}}>
                 <img src={logout} alt="logout" />
             </div>
             { column && <Column toggleColumn={setColumn}/> }

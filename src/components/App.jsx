@@ -6,13 +6,13 @@ import {
   BrowserRouter as Router,
   Switch,
   Route,
-  Link
+  // Link
 } from "react-router-dom";
-import { useState } from 'react';
+// import { useState } from 'react';
 import History from './History';
 
 function App() {
-  const [ column, setColumn ] = useState(false)
+  // const [ column, setColumn ] = useState(false)
   return (
     <Router>
       <Switch>

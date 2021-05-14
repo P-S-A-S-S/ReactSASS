@@ -51,7 +51,7 @@ function Multicmd() {
                         <div className="banner" id="endpoints" onClick={()=>{setDispaly("endpoints")}}>
                                 <h2>Select endpoints</h2>
                         </div>
-                        <div className="endpointsDiv" id={display ==="endpoints" ? "openEndpointsDiv" : "" }>
+                        <div className="endpointsDiv" id={display === "endpoints" ? "openEndpointsDiv" : "" }>
                                 <div className="container">
                                         <div className="itemSelect cell">Select</div>
                                         <div className="itemStatus cell">Status</div>
