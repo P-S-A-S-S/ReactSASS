@@ -1,4 +1,4 @@
-var logged = false;
+var logged;
 
 const sendCredentials =  async (user, passwd) => {
     const jsonData = { username: user, password: passwd }
@@ -15,10 +15,14 @@ const sendCredentials =  async (user, passwd) => {
         referrerPolicy: 'no-referrer', // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
         body: JSON.stringify(jsonData) // body data type must match "Content-Type" header
       })
-        .then(res => res.json()) // expecting a json response
-          .then( (json) => {
-            logged = json.valid;
+        .then( async (res) => { if(res.ok){ logged = await res.json() } else { logged = res.ok }}); // expecting a json response
+          /*.then( (json) => {
+            console.log(json)
+            if(json){
+              logged = json.valid;
+            }
           });
-          return logged;
+          */
+            return logged;
       }
 export{sendCredentials};

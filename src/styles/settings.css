@@ -41,7 +41,7 @@
     padding: 15px 30px 15px 30px;
     font-size: 24px;
     border-radius: 1vh;
-    border: 1px solid indigo;
+    border: 3px solid indigo;
 }
 input {
     outline: none;
@@ -65,8 +65,8 @@ input {
     align-self: center;
     text-align: center;
     color: #ffffff;
-    height: 150px;
-    width: 150px;
+    max-height: 150px;
+    max-width: 150px;
     margin-top: 70px;
 }
 @media (max-width: 414px) {
@@ -92,7 +92,7 @@ input {
         padding: 15px 30px 15px 30px;
         font-size: 24px;
         border-radius: 1vh;
-        border: 1px solid indigo;
+        border: 2px solid indigo;
     }
     .sendform{
         margin-top: 15px;
