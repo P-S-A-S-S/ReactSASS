@@ -1,6 +1,5 @@
 import '../styles/settings.css';
 import logo from '../media/images/sasslogo.png';
-import { useHistory } from 'react-router-dom';
 import { modifyCredentials } from '../helpers/modifyCredentials';
 import Header from './Header';
 import { useState } from 'react';
@@ -8,7 +7,6 @@ import 'react-notifications/lib/notifications.css';
 import {NotificationContainer, NotificationManager} from 'react-notifications';
 
 function Settings() {
-    const history = useHistory();
     const [ user, setUser ] = useState("");
     const [ passwd, setPasswd ] = useState("");
 
