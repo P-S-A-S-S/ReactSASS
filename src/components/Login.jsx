@@ -5,11 +5,23 @@ import { sendCredentials } from '../helpers/sendCredentials';
 import { useState } from 'react';
 import 'react-notifications/lib/notifications.css';
 import {NotificationContainer, NotificationManager} from 'react-notifications';
+import { useCookies } from 'react-cookie';
 
 function Login() {
     const history = useHistory();
     const [ user, setUser ] = useState("");
     const [ passwd, setPasswd ] = useState("");
+    const [ cookie, setCookie, removeCookie ] = useCookies(['sass-user']);
+
+    const loginHandler = async () => {
+        if(await sendCredentials(user, passwd)){
+            setCookie('sassuser', 'successfulLogin', { path: '/' })
+            console.log(cookie);
+            history.push("/multi-cmd") 
+        } else { 
+            NotificationManager.error("Invalid Credentials, try again.") 
+        }
+    }
 
     return (
         <div className="logincontainer">
@@ -20,7 +32,7 @@ function Login() {
                 <form className="login">
                     <input className="inputField" type="text" name="username" placeholder="Username" onChange={ (e) => { setUser(e.target.value)}} />
                     <input className="inputField" type="password" name="password" placeholder="Password" onChange={ (e) => { setPasswd(e.target.value)}} />
-                    <button className="sendform" type="button" name="submit" value="Send" onClick={ async ()=> { if( await sendCredentials(user, passwd) ){ history.push("/multi-cmd") } else { NotificationManager.error("Invalid Credentials, try again.") }}}>Send</button>
+                    <button className="sendform" type="button" name="submit" value="Send" onClick={ () => {loginHandler()}}>Send</button>
                 </form>
                 <img className="sasslogo" src={logo} alt="sasslogo"/>
             </div>
