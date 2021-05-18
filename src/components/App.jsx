@@ -1,4 +1,3 @@
-//import Multicmd from './Multicmd'
 import Login from './Login';
 import Multicmd from './Multicmd';
 import Settings from './Settings';
@@ -8,11 +7,19 @@ import {
   Route,
   // Link
 } from "react-router-dom";
-// import { useState } from 'react';
 import History from './History';
+import { useCookies } from 'react-cookie';
+
 
 function App() {
-  // const [ column, setColumn ] = useState(false)
+  const [ cookies ] = useCookies(['sassuser']);
+  console.log(typeof cookies.sassuser); 
+  if(typeof cookies.sassuser !== 'undefined') {
+    console.log(cookies.sassuser);
+  } else {
+    console.log("No cookies set")
+  }
+
   return (
     <Router>
       <Switch>
@@ -22,7 +29,7 @@ function App() {
           </div>
         </Route>
         <Route path="/multi-cmd">
-          <Multicmd/>
+          { typeof cookies.sassuser !== 'undefined' ? <Multicmd /> : <Login />}
         </Route>
         <Route path="/settings">
           <Settings/>
