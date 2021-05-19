@@ -11,7 +11,7 @@ function Login() {
     const history = useHistory();
     const [ user, setUser ] = useState("");
     const [ passwd, setPasswd ] = useState("");
-    const [ cookie, setCookie, removeCookie ] = useCookies(['sass-user']);
+    const [ cookie, setCookie ] = useCookies(['sass-user']);
 
     const loginHandler = async () => {
         if(await sendCredentials(user, passwd)){
@@ -22,6 +22,10 @@ function Login() {
             NotificationManager.error("Invalid Credentials, try again.") 
         }
     }
+
+    /*
+        Login pressing Enter key tutorial with basic js: https://www.w3schools.com/howto/howto_js_trigger_button_enter.asp
+    */
 
     return (
         <div className="logincontainer">
