@@ -23,20 +23,16 @@ function Login() {
         }
     }
 
-    /*
-        Login pressing Enter key tutorial with basic js: https://www.w3schools.com/howto/howto_js_trigger_button_enter.asp
-    */
-
     return (
         <div className="logincontainer">
             <NotificationContainer/>
             <div className="loginpage">
                 <h1 className="Ltitle">SASS</h1>
                 <h2 className="subtitle">Login</h2>
-                <form className="login">
+                <form className="login" action="POST">
                     <input className="inputField" type="text" name="username" placeholder="Username" onChange={ (e) => { setUser(e.target.value)}} />
                     <input className="inputField" type="password" name="password" placeholder="Password" onChange={ (e) => { setPasswd(e.target.value)}} />
-                    <button className="sendform" type="button" name="submit" value="Send" onClick={ () => {loginHandler()}}>Send</button>
+                    <button className="sendform" type="submit" name="submit" value="Send" onClick={ (e) => {loginHandler(); e.preventDefault()}}>Send</button>
                 </form>
                 <img className="sasslogo" src={logo} alt="sasslogo"/>
             </div>
