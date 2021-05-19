@@ -13,11 +13,12 @@ import { useCookies } from 'react-cookie';
 
 function App() {
   const [ cookies ] = useCookies(['sassuser']);
-  console.log(typeof cookies.sassuser); 
-  if(typeof cookies.sassuser !== 'undefined') {
+
+  var isCookieSet = cookies.sassuser !== '' && typeof cookies.sassuser !== 'undefined';  
+  if(isCookieSet) {
     console.log(cookies.sassuser);
   } else {
-    console.log("No cookies set")
+    console.log("No cookies set");
   }
 
   return (
@@ -29,17 +30,17 @@ function App() {
           </div>
         </Route>
         <Route path="/multi-cmd">
-          { typeof cookies.sassuser !== 'undefined' ? <Multicmd /> : <Login />}
+          { isCookieSet ? <Multicmd /> : <Login />}
         </Route>
         <Route path="/settings">
-          <Settings/>
+          { isCookieSet ? <Settings /> : <Login />}
         </Route>
         <Route path="/history">
-          <History/>
+          { isCookieSet ? <History /> : <Login />}
+          
         </Route>
       </Switch>
     </Router>
-
   );
 }
 
