@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import '../styles/header.css';
 import logo from '../media/images/sasslogo.png';
 import { useHistory } from 'react-router-dom';
@@ -13,7 +14,7 @@ function Header() {
     const [ cookie, removeCookie ] = useCookies(['sass-user']);
 
     const handleLogout = () => {
-        removeCookie('sassuser', '',{ path: '/' });
+        removeCookie('sassuser', '', { path: '/' });
         history.push('/');
     }
 
