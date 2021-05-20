@@ -94,3 +94,9 @@ a {
     margin-top: 1vh;
     margin-bottom: 1vh;
 }
+.otput{
+    white-space: pre-wrap;
+}
+.hdata{
+    margin-top: 20px;
+}
