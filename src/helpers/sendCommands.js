@@ -3,7 +3,7 @@ const sendCommands =  (command, endpoints) => {
     const cleanEndpoints = endpoints.join();
     const jsonData = { cmd: command, endp: cleanEndpoints }
 
-    fetch('https://localhost:5000/sendcommands', {
+    fetch('https://sass-project.ddns.net/sendcommands', {
         method: 'POST', // *GET, POST, PUT, DELETE, etc.
         mode: 'cors', // no-cors, *cors, same-origin
         cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached

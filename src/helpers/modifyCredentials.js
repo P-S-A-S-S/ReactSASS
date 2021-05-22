@@ -2,7 +2,7 @@ var logged = false;
 
 const modifyCredentials =  async (user, passwd) => {
     const jsonData = { username: user, password: passwd }
-    await fetch('https://localhost:5000/modify', {
+    await fetch('https://sass-project.ddns.net/modify', {
         method: 'POST', // *GET, POST, PUT, DELETE, etc.
         mode: 'cors', // no-cors, *cors, same-origin
         cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
