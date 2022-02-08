@@ -1,6 +1,6 @@
 const getHistory =  async () => {
 
-    const history = await fetch('https://sass-project.ddns.net/gethistory', {
+    const history = await fetch(`https://${process.env.REACT_APP_FRONT_URL}/gethistory`, {
         method: 'GET', // *GET, POST, PUT, DELETE, etc.
         mode: 'cors', // no-cors, *cors, same-origin
         cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached

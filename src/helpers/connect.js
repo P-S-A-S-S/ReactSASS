@@ -1,7 +1,7 @@
 const DEBUG = false;
 
 function connect(endpoints, setEndpoints, outArr, setOutArr) {
-    var ws = new WebSocket('wss://sass-project.ddns.net:443');
+    var ws = new WebSocket(`wss://${process.env.REACT_APP_FRONT_URL}:443`);
     ws.onopen = function() {
             if(DEBUG) console.log("Connection started");
             
