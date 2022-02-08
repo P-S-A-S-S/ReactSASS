@@ -21,7 +21,7 @@
     "ws": "^7.4.5"
   },
   "scripts": {
-    "start": "FRONT_URL=35.190.198.121 react-scripts start",
+    "start": "REACT_APP_FRONT_URL=INSERT.IP.OR.DOMAIN react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
